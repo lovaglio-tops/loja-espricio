@@ -23,7 +23,27 @@
 ```
 
 
-
-
-
 ### clientes
+## api reference 
+
+### clientes 
+
+#### GET/clientes
+-**Descriçao**: obtém uma lista de clientes
+-**Responde**: Array de clientes
+
+#### POST /clientes
+-**Descrição**: Cria um novo clientes
+-**Body**:
+```
+{
+    "nomeCliente": "clienteExemplo"
+    "cpfCliente": "51891519808"
+}
+```
+-**Response**:
+```
+{
+    "message": "cliente cadastrado com sucesso"
+}
+```
