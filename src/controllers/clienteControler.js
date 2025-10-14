@@ -35,8 +35,13 @@ const clienteController = {
 
             const { nomeCliente, cpfCliente } = req.body;
 
+            const cliente = await clienteModel.buscarCpf(cpfCliente);
+
             if (nomeCliente == undefined||cpfCliente==undefined|| isNaN(cpfCliente)) {
                 return res.status(400).json({error:'campos obrigatorios não prenchidos!'});
+            }
+            if (cliente.length > 0) {
+                return res.status(409).json({erro:"CPF já cadastrado"});
             }
 
             await clienteModel.inserircliente(nomeCliente,cpfCliente);

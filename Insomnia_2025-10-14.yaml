@@ -1,0 +1,139 @@
+type: collection.insomnia.rest/5.0
+name: S1_R6-AT1_PBE1
+meta:
+  id: wrk_c96b061b0c994f54b1d2dc9361581920
+  created: 1760450099449
+  modified: 1760450099449
+  description: ""
+collection:
+  - name: PRODUTOS
+    meta:
+      id: fld_3b550309c29b468e9a5a17f4010a8a02
+      created: 1760450122984
+      modified: 1760450122984
+      sortKey: -1760450122984
+      description: ""
+    children:
+      - url: localhost:8081/produtos
+        name: get produto
+        meta:
+          id: req_d993645cc277430a9896aaa4f4ad507d
+          created: 1760450324911
+          modified: 1760450354454
+          isPrivate: false
+          description: ""
+          sortKey: -1760450354429
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/produtos
+        name: post produtos
+        meta:
+          id: req_f219e11e3ef04ad8b6d51fd4da93748f
+          created: 1760450359870
+          modified: 1760450520368
+          isPrivate: false
+          description: ""
+          sortKey: -1760450354529
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"nomeProduto": "abobora",
+            	"precpProduto": "0.00"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: CLIENTES
+    meta:
+      id: fld_4bb75e7d3be04ed4b17995a2487eaeb9
+      created: 1760450136234
+      modified: 1760450398317
+      sortKey: -1760450136234
+      description: ""
+    children:
+      - url: localhost:8081/clientes
+        name: post clientes
+        meta:
+          id: req_b239ccbbf0cd4deea3444b041bc68516
+          created: 1760450143274
+          modified: 1760450453461
+          isPrivate: false
+          description: ""
+          sortKey: -1760450143274
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+             "nomeCliente": "daniel",
+            	"cpfCliente": "51899944400"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/clientes
+        name: get cliente
+        meta:
+          id: req_dc0ea9589b7d460ca14c7f239394d430
+          created: 1760450233577
+          modified: 1760450312192
+          isPrivate: false
+          description: ""
+          sortKey: -1760450143374
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ea31b4ed40912d6f6effd7e20f134d369f19dbc1
+    created: 1760450099492
+    modified: 1760450099492
+environments:
+  name: Base Environment
+  meta:
+    id: env_ea31b4ed40912d6f6effd7e20f134d369f19dbc1
+    created: 1760450099473
+    modified: 1760450099473
+    isPrivate: false
