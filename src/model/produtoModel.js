@@ -20,7 +20,7 @@ const produtoModel = {
         try {
             const pool = await getConnection();
 
-            const querySQL = 'select * from produtos where idProdutos = @idProduto;';
+            const querySQL = 'select * from produtos where idProduto = @idProduto;';
 
             const result = await pool.request()
                 .input('idProduto', sql.UniqueIdentifier, idProduto)
@@ -54,10 +54,10 @@ const produtoModel = {
             const pool = await getConnection();
 
             const querySQL = `
-                    update produtos 
-                    set nomeProduto = @nomeProduto,
+                    UPDATE produtos 
+                    SET nomeProduto = @nomeProduto,
                         precoProduto = @precoProduto
-                    where idProdutos = @idProduto
+                    WHERE idProduto = @idProduto
                  `;
 
             await pool.request()
@@ -77,7 +77,7 @@ const produtoModel = {
         try {
             const pool = await getConnection();
 
-            const querySQL = `DELETE from produtos where idProduto = @idProduto`
+            const querySQL = `DELETE FROM produtos WHERE idProduto = @idProduto`
 
             await pool.request()
                 .input('idProduto', sql.UniqueIdentifier, idProduto)

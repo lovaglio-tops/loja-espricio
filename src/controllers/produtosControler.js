@@ -3,12 +3,22 @@ const { produtoModel } = require("../model/produtoModel");
 const produtoController = {
     //---------------
     //Listar todos os produtos
+    //listar um produto
     //Get /produtos
     //---------------
     listarProdutos: async (req, res) => {
         try {
-            const produtos = await produtoModel.buscarTodos();
 
+            const { idProduto } = req.query;
+            if (idProduto) {
+                if (!idProduto || idProduto.length !== 36) {
+                    return res.status(400).json({ erro: 'idProduto inválido!' });
+                }
+                const produto = await produtoModel.bucarUm(idProduto);
+                res.status(200).json(produto);
+            }
+
+            const produtos = await produtoModel.buscarTodos();
             res.status(200).json(produtos);
         } catch (error) {
             console.error('Erro ao listar produtos', error);
@@ -56,6 +66,10 @@ const produtoController = {
             const { idProduto } = req.params;
             const { nomeProduto, precoProduto } = req.body;
 
+            if (!idProduto || idProduto.length !== 36) {
+                return res.status(400).json({ erro: 'idProduto inválido!' });
+            }
+
             const produto = await produtoModel.bucarUm(idProduto);
 
             if (!produto || produto.length !== 1) {
@@ -77,6 +91,11 @@ const produtoController = {
     deletarProduto: async (req, res) => {
         try {
             const { idProduto } = req.params;
+
+            if (!idProduto || idProduto.length !== 36) {
+                return res.status(400).json({ erro: 'idProduto inválido!' });
+            }
+
             const produto = await produtoModel.bucarUm(idProduto);
 
             if (!produto || produto.length !== 1) {
