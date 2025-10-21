@@ -1,4 +1,4 @@
-const { produtoModel } = require("../models/produtoModel");
+const { produtoModel } = require("../model/produtoModel");
 
 const produtoController = {
     //---------------
@@ -38,6 +38,57 @@ const produtoController = {
         } catch (error) {
             console.error('Erro ao cadastrar produto', error);
             res.status(500).json({ erro: 'Erro no servidor ao cadastrar produto!' });
+        }
+    },
+    //---------------
+    //atualizar um produto
+    //Put /Produtos.idProduto
+    //nomeProduto e precoProduto são opciona
+    //---------------
+    /*
+    {
+        "nomeProduto": "valor",
+        "precoProduto": 0.00
+    }
+    */
+    atulizarProduto: async (req, res) => {
+        try {
+            const { idProduto } = req.params;
+            const { nomeProduto, precoProduto } = req.body;
+
+            const produto = await produtoModel.bucarUm(idProduto);
+
+            if (!produto || produto.length !== 1) {
+                return res.status(404).json({ erro: 'Produto não encontrado' });
+            }
+
+            const produtoAtual = produto[0];
+            const nomeAtualizado = nomeProduto ?? produtoAtual.nomeProduto;
+            const precoAtualizado = precoProduto ?? produtoAtual.precoProduto;
+
+            await produtoModel.atualizarProduto(idProduto, nomeAtualizado, precoAtualizado);
+            res.status(200).json({ message: 'produto atualizado com sucesso' });
+        } catch (error) {
+            console.error('erro ao atualizar o produto', error);
+            res.status(500).json({ erro: ' erro no servidor ao atualizar produto' });
+
+        }
+    },
+    deletarProduto: async (req, res) => {
+        try {
+            const { idProduto } = req.params;
+            const produto = await produtoModel.bucarUm(idProduto);
+
+            if (!produto || produto.length !== 1) {
+                return res.status(404).json({ erro: 'Produto não encontrado' });
+            }
+            await produtoModel.deletarProduto(idProduto);
+
+            res.status(200).json({ message: "PRODUTO DELETADO COM SUCESSO!" });
+        } catch (error) {
+            console.error('erro ao deletar o produto', error);
+            res.status(500).json({ erro: ' erro no servidor ao deletar produto' });
+
         }
     }
 }
